@@ -1,0 +1,6 @@
+@Blanket.Server_HostAddress = http://localhost:5103
+
+GET {{Blanket.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
