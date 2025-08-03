@@ -2,32 +2,19 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --color-red: #a43136;
+  --color-yellow: #f7d492;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #fefefe !important;
 }
 
 h1 {
@@ -65,4 +52,225 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.button-action {
+  width: 240px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #fff;
+  transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader .spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+}
+
+.loader .spinner .path {
+  stroke: #2d86eb;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+.file-upload-wrap {
+  position: relative;
+  width: 170px;
+}
+
+.file-upload-wrap .file-upload-input {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  width: 100%;
+  border: 1px solid rgba(128, 137, 150, 0.2);
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  text-indent: -99999px;
+}
+
+.file-upload-wrap .file-upload-input:hover {
+  border-color: rgba(128, 137, 150, 0.4);
+  background-color: rgba(128, 137, 150, 0.04);
+}
+
+.file-upload-wrap .file-upload-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  text-align: center;
+  font-size: 15px;
+  color: #6c727c;
+  line-height: 50px;
+  padding-left: 20px;
+}
+
+.file-upload-wrap .MultiFile-list {
+  margin-top: 15px;
+}
+
+.file-upload-wrap .MultiFile-list > .MultiFile-label {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: rgba(128, 137, 150, 0.04);
+  display: inline-block;
+  border: 1px solid rgba(128, 137, 150, 0.1);
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.file-upload-wrap .MultiFile-list > .MultiFile-label + .MultiFile-label {
+  margin-top: 20px;
+}
+
+.file-upload-wrap .MultiFile-list > .MultiFile-label > span {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.file-upload-wrap .MultiFile-list > .MultiFile-label > span .MultiFile-label {
+  width: 20%;
+  margin: 5px;
+}
+
+.file-upload-wrap .MultiFile-list .MultiFile-remove {
+  -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  background-color: #fff;
+  color: #0d233e;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  top: -10px;
+  right: -10px;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.file-upload-wrap .MultiFile-list .MultiFile-remove:hover {
+  color: #f4414f;
+}
+
+.file--upload-wrap .MultiFile-list > .MultiFile-label > span .MultiFile-label {
+  width: auto;
+}
+
+.file-upload-layout-2 {
+  width: auto;
+}
+
+.file-upload-layout-2 .file-upload-input {
+  height: 125px;
+  border-style: dashed;
+  border-width: 2px;
+}
+
+.file-upload-layout-2 .file-upload-text {
+  width: 100%;
+  line-height: 125px;
+  padding-left: 0;
+}
+
+@font-face {
+  font-family: "Moulin Regular";
+  src: url("./assets/fonts/Moulin-Regular-Web.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "Moulin Light";
+  src: url("./assets/fonts/Moulin-Light-Web.woff2") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Moulin Regular", "Moulin Light", sans-serif;
+}
+
+body.not-scroll {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button {
+  font-family: "Moulin Regular", "Moulin Light", sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 15px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: darkgrey;
+  border-radius: 15px;
 }

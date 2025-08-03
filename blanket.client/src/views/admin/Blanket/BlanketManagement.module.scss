@@ -1,0 +1,46 @@
+.modalContent {
+    float: left;
+    width: 50%;
+}
+
+.modalContentRight {
+    float: right;
+    width: 50%;
+    height: 500px;
+    overflow-y: scroll;
+
+    .airConditionImage {
+        width: 300px;
+        margin-bottom: 5px;
+    }
+}
+
+.formContainer {
+    width: 100%;
+
+    .textInput {
+        width: 60%;
+        float: left;
+        padding-right: 1rem;
+
+        .inputControl {
+            margin: 1rem 0;
+
+            .errorMessage {
+                color: red;
+                font-size: 10px;
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    .imageInput {
+        width: 40%;
+        float: right;
+    }
+}
+
+.clearfix {
+    clear: both !important;
+    display: block !important;
+}

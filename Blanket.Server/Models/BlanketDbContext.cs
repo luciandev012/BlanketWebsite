@@ -21,11 +21,14 @@ namespace Blanket.Server.Models
             modelBuilder.Entity<Brand>().ToTable("Brands").HasKey(e => e.Id);
             modelBuilder.Entity<Brand>().HasMany(e => e.Blankets).WithOne(e => e.Brand).HasForeignKey(e => e.BrandId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Brand>().HasOne(e => e.BrandImage).WithOne(e => e.Brand).HasForeignKey<BrandImage>(e => e.BrandId).OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>().ToTable("Orders").HasKey(e => e.Id);
         }
 
         public virtual DbSet<BlanketProduct> BlanketProducts { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<BrandImage> BrandImages { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

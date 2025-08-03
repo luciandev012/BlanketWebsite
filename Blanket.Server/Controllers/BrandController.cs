@@ -22,8 +22,8 @@ namespace Blanket.Server.Controllers
             return Ok(res);
         }
 
-        [HttpGet("with-airconditions")]
-        public async Task<IActionResult> GetBrandsWithAirConditionsAsync()
+        [HttpGet("with-blankets")]
+        public async Task<IActionResult> GetBrandsWithBlanketsAsync()
         {
             var res = await _brandService.GetBrandsWithBlanketsAsync();
             return Ok(res);

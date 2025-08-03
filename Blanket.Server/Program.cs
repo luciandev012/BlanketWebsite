@@ -21,12 +21,12 @@ builder.Services.AddCors(option =>
     option.AddPolicy("myCORS",
         policy =>
         {
-            policy.WithOrigins("https://localhost:5173").AllowCredentials().AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins("https://localhost:51508").AllowCredentials().AllowAnyHeader().AllowAnyMethod();
         });
 });
 
 builder.Services.AddTransient<BrandServices>();
-//builder.Services.AddTransient<AirConditionServices>();
+builder.Services.AddTransient<BlanketServices>();
 builder.Services.AddTransient<ImageServices>();
 
 builder.Services.AddControllers();

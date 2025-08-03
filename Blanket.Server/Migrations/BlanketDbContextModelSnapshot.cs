@@ -119,6 +119,32 @@ namespace Blanket.Server.Migrations
                     b.ToTable("Images", (string)null);
                 });
 
+            modelBuilder.Entity("Blanket.Server.Models.Model.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.PrimitiveCollection<string>("BlanketProductIds")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders", (string)null);
+                });
+
             modelBuilder.Entity("Blanket.Server.Models.Model.BlanketProduct", b =>
                 {
                     b.HasOne("Blanket.Server.Models.Model.Brand", "Brand")
