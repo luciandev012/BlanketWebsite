@@ -1,8 +1,114 @@
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./ProductDetail.module.scss";
+import classNames from "classnames/bind";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getBlankets } from "../../../actions/blanket";
+import { getImageUrl } from "../../../helper/common";
+
+const cx = classNames.bind(styles);
+
 export default function ProductDetail() {
+  const dispatch = useDispatch();
+  const { pathName } = useParams();
+  const blankets = useSelector((state) => state.blanket);
+  const [selectedImgIndex, setSelectedImgIndex] = useState(0);
+
+  useEffect(() => {
+    dispatch(getBlankets());
+  }, [dispatch]);
+
+  const product = blankets.find((item) => item.pathName === pathName);
+
   return (
     <div>
-      <h1>Product Detail Page</h1>
-      {/* Product details will be displayed here */}
+      {product && (
+        <div className={cx("wrapper-product")}>
+          <div className={cx("position-relative")}>
+            <section className={cx("product-detail")}>
+              <div className={cx("slides")}>
+                <div className={cx("slides-wrapper")}>
+                  <div className={cx("slides-thumbs")}>
+                    <div className={cx("swiper")}>
+                      {product.images.map((img, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={cx(
+                              "slides-item",
+                              index === selectedImgIndex ? "active" : ""
+                            )}
+                            onClick={() => setSelectedImgIndex(index)}
+                          >
+                            <img src={getImageUrl(img.path)} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className={cx("slides-main")}>
+                    <div className={cx("main-img")}>
+                      <img
+                        src={getImageUrl(product.images[selectedImgIndex].path)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={cx("view-more")}>
+                  <h5>Thông tin sản phẩm</h5>
+                  <div className={cx("wrapper-information-product")}>
+                    <p>{product.description}</p>
+                  </div>
+                </div>
+              </div>
+              <div className={cx("product-information")}>
+                <div className={cx("title")}>
+                  <h3 className={cx("product-name")}>{product.name}</h3>
+                </div>
+                <div className={cx("tag-box")}>
+                  <div className={cx("brand")}>
+                    Thương hiệu:{" "}
+                    <img
+                      src={getImageUrl(product.brand.brandImage.path)}
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className={cx("price-box")}>
+                  <div className={cx("price")}>
+                    {product.price}
+                    <span className={cx("dong")}>đ</span>
+                  </div>
+                </div>
+                <div className={cx("product-attribute")}>
+                  <div className={cx("parameter")}>
+                    <div className={cx("parameter-name")}>Màu sắc:</div>
+                    <div className={cx("parameter-value")}>{product.color}</div>
+                  </div>
+                  <div className={cx("parameter")}>
+                    <div className={cx("parameter-name")}>Loại sản phẩm</div>
+                    <div className={cx("parameter-value")}>
+                      {product.productType}
+                    </div>
+                  </div>
+                  <div className={cx("parameter")}>
+                    <div className={cx("parameter-name")}>
+                      Kích thước sản phẩm
+                    </div>
+                    <div className={cx("parameter-value")}>{product.size}</div>
+                  </div>
+                </div>
+                <div className={cx("product-action")}>
+                  <button className={cx("btn", "btn-add-cart")}>
+                    Thêm vào giỏ
+                  </button>
+                  <button className={cx("btn", "btn-buy-now")}>Mua ngay</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
