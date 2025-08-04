@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.scss";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getBlankets } from "../../../actions/blanket";
 import { getImageUrl } from "../../../helper/common";
 
@@ -13,17 +13,39 @@ export default function ProductDetail() {
   const { pathName } = useParams();
   const blankets = useSelector((state) => state.blanket);
   const [selectedImgIndex, setSelectedImgIndex] = useState(0);
+  const productDetailRef = useRef(null);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
     dispatch(getBlankets());
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const productDetailElement = productDetailRef.current;
+      if (productDetailElement) {
+        const { bottom } = productDetailElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        if (bottom <= viewportHeight) {
+          setIsHidden(true);
+        } else {
+          setIsHidden(false);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const product = blankets.find((item) => item.pathName === pathName);
 
   return (
     <div>
       {product && (
-        <div className={cx("wrapper-product")}>
+        <div ref={productDetailRef} className={cx("wrapper-product")}>
           <div className={cx("position-relative")}>
             <section className={cx("product-detail")}>
               <div className={cx("slides")}>
@@ -98,7 +120,7 @@ export default function ProductDetail() {
                     <div className={cx("parameter-value")}>{product.size}</div>
                   </div>
                 </div>
-                <div className={cx("product-action")}>
+                <div className={cx("product-action", isHidden ? "hidden" : "")}>
                   <button className={cx("btn", "btn-add-cart")}>
                     Thêm vào giỏ
                   </button>

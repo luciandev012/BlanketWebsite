@@ -1,3 +1,187 @@
-.container {
-  width: 100%;
+.wrapper {
+  .overlay-body {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: none;
+    top: 0;
+  }
+  .container {
+    width: 100%;
+  }
+  .search-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    padding: 20px 0 40px;
+    z-index: 9999;
+    height: -moz-fit-content;
+    height: fit-content;
+    transition: -webkit-clip-path 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: clip-path 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: clip-path 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      -webkit-clip-path 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0px 30px 20px 0px rgba(0, 0, 0, 0.05);
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+
+    .btn-close {
+      background: transparent;
+      opacity: 1;
+      top: 44px;
+      right: 46px;
+      left: unset;
+      padding: 0;
+      height: auto;
+      width: auto;
+      outline: 0;
+      position: absolute;
+      box-shadow: none;
+      color: #000;
+      border: 0;
+      border-radius: 0.375rem;
+    }
+
+    .search-wrapper {
+      max-width: 1000px;
+      min-height: 50vh;
+      margin: 0 auto;
+      background: #fff;
+
+      .search-form {
+        padding: 30px 16px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #05472a;
+        margin-bottom: 30px;
+
+        .search-input {
+          flex: 1;
+          border: 0;
+          outline: 0;
+          color: #05472a;
+          font-size: 26px;
+          line-height: 24px;
+          box-shadow: none;
+          padding-right: 30px;
+        }
+
+        .search-btn {
+          flex-shrink: 0;
+          background: transparent;
+          border: 0;
+          outline: 0;
+        }
+      }
+
+      .search-suggestions {
+        max-width: 600px;
+
+        .suggestion__item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+
+          .suggestion__image {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            text-decoration: none;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .suggestion__content {
+            .suggestion__name {
+              color: var(--grey);
+              font-size: 20px;
+              line-height: normal;
+              margin-bottom: 12px;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              word-break: break-word;
+              text-decoration: none;
+            }
+            .suggestion__price {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              flex-wrap: wrap;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: normal;
+              .dong {
+                color: currentColor;
+                line-height: normal;
+                text-decoration: underline;
+                transform: translateY(-1px);
+                display: inline-block;
+                font-size: 13px;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .active {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
+  }
+
+  @media screen and (max-width: 767px) {
+    .search-box {
+      transform: translateY(100%);
+      opacity: 0;
+      visibility: hidden;
+      padding: 1rem !important;
+      clip-path: none !important;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      height: auto;
+      top: unset;
+      bottom: 0;
+      max-height: 90%;
+      overflow: unset;
+      z-index: 999;
+      overflow-y: auto;
+
+      .btn-close {
+        position: static;
+        float: right;
+      }
+      .search-wrapper {
+        .search-form {
+          padding: 16px 0;
+
+          .search-input {
+            font-size: 18px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    .active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      border-radius: 12px 12px 0 0;
+      padding: 1rem !important;
+      min-height: 60vh;
+    }
+  }
 }

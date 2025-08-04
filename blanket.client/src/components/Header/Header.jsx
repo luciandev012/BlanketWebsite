@@ -10,10 +10,11 @@ import {
   SearchIcon,
   WishlistIcon,
 } from "../Icon/Icon";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-const Header = () => {
+const Header = ({ activeSearch }) => {
   const [menuIsActive, setMenuActive] = useState(false);
   const [burgerIsActive, setBurgerActive] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
@@ -41,7 +42,9 @@ const Header = () => {
       <header className={cx("wrapper", "active")}>
         <div className={cx("container")}>
           <div className={cx("logo")}>
-            <img src={logo} alt="" />
+            <Link to="/">
+              <img src={logo} alt="" />
+            </Link>
           </div>
           <nav className={cx("nav", { active: burgerIsActive })}>
             <ul>
@@ -64,7 +67,7 @@ const Header = () => {
             </ul>
           </nav>
           <div className={cx("right-icon")}>
-            <div className={cx("search")}>
+            <div onClick={activeSearch} className={cx("search")}>
               <SearchIcon className={cx("search-icon")} />
             </div>
             <div className={cx("wishlist")}>
@@ -84,7 +87,6 @@ const Header = () => {
                 setMenuActive((prev) => !prev);
                 setShowMegaMenu(false);
                 setResetMenuTrigger((prev) => !prev);
-                console.log(resetMenuTrigger);
               }}
             >
               <span></span>
