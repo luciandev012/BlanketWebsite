@@ -10,7 +10,7 @@ import {
   SearchIcon,
   WishlistIcon,
 } from "../Icon/Icon";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +20,7 @@ const Header = ({ activeSearch }) => {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
   const [resetMenuTrigger, setResetMenuTrigger] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (burgerIsActive) {
@@ -76,7 +77,10 @@ const Header = ({ activeSearch }) => {
             <div className={cx("account")}>
               <AccountIcon className={cx("account-icon")} />
             </div>
-            <div className={cx("cart")}>
+            <div
+              onClick={() => navigate("/cart", { replace: true })}
+              className={cx("cart")}
+            >
               <CartIcon className={cx("cart-icon")} />
               <span className={cx("cart-count")}>0</span>
             </div>

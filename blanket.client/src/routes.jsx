@@ -5,6 +5,7 @@ import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import BrandManagement from "./views/admin/BlanketBrand/BrandManagement";
 import BlanketManagement from "./views/admin/Blanket/BlanketManagement";
 import ProductDetail from "./views/client/ProductDetail/ProductDetail";
+import Cart from "./views/client/Cart/Cart";
 
 export default function Route() {
   return useRoutes([
@@ -23,6 +24,10 @@ export default function Route() {
         {
           path: "product/:pathName",
           element: <ProductDetail />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
       ],
     },

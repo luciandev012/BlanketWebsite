@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const BASE_URL = "http://aircondition.runasp.net/api/";
+//const BASE_URL = "http://blanketwebsite.runasp.net/api/";
 
 const BASE_URL = "https://localhost:7011/api/";
 //const BASE_URL = "http://localhost:5150/api/";

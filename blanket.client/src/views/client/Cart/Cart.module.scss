@@ -1,0 +1,97 @@
+.cart-page {
+    margin-top: 73px;
+    font-style: italic !important;
+    font-family: "Moulin Light", sans-serif;
+
+    .cart-empty {
+        background: #fbf7f3;
+        color: rgb(41, 41, 41);
+        padding: 200px 0;
+        font-size: 20px;
+        line-height: normal;
+        text-align: center;
+    }
+}
+
+.cart-container {
+    max-width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    @media screen and (min-width: 1200px) {
+        max-width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 24px;
+        font-weight: 400;
+        font-family: "Moulin Web", sans-serif;
+    }
+}
+
+.cart-relative {
+    position: relative;
+}
+
+.cart-sidebars {
+    display: grid;
+    grid-template-columns: 1fr 27.9069767442%;
+
+    .left-side {
+        padding: 60px 100px 60px 0;
+        padding-right: 30px;
+        position: relative;
+        z-index: 2;
+        background: #fff;
+
+        .cart-product-list {
+
+            .cart-title {
+                color: rgb(41, 41, 41);
+                font-size: 36px;
+                line-height: normal;
+                margin-top: 36px;
+            }
+
+            .cart-top {
+                background: #fbf7f3;
+                display: grid;
+                grid-template-columns: 1fr 106px 126px 120px 20px;
+                padding: 12px 20px;
+                align-items: flex-start;
+                gap: 32px;
+                color: #646464;
+                font-size: 16px;
+                line-height: 22px;
+
+                @media screen and (max-width: 1679px) {
+                    gap: 1rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+
+                }
+            }
+
+            .cart-body {
+                .cart-item {
+                    grid-template-columns: 1fr 106px 126px 120px 20px;
+                    gap: 32px;
+                    align-items: center;
+                    display: grid;
+                    padding: 30px 20px;
+                    background: #fff;
+                    position: relative;
+                    border-bottom: 1px solid var(--stroke, #eaeaea);
+
+
+                }
+            }
+        }
+    }
+
+}

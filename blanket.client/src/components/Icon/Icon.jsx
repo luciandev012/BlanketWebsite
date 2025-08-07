@@ -147,3 +147,46 @@ export const ChevronDownIcon = ({ className }) => (
     <path d="M6.66797 0H0.167969L3.66797 3L6.66797 0Z" fill="#292929"></path>
   </svg>
 );
+
+export const Minus = ({ className }) => (
+  <svg
+    width="16"
+    height="17"
+    viewBox="0 0 16 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M3.3335 8.41602H12.6668"
+      stroke="#292929"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></path>
+  </svg>
+);
+
+export const Plus = ({ className }) => (
+  <svg
+    width="16"
+    height="17"
+    viewBox="0 0 16 17"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 3.75V13.0833"
+      stroke="#292929"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></path>
+    <path
+      d="M3.3335 8.41602H12.6668"
+      stroke="#292929"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></path>
+  </svg>
+);
