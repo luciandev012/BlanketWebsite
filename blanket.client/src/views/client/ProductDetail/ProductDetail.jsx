@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { getBlankets } from "../../../actions/blanket";
 import { getImageUrl } from "../../../helper/common";
+import { toast, ToastContainer } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const { pathName } = useParams();
   const blankets = useSelector((state) => state.blanket);
+  const carts = useSelector((state) => state.cart);
   const [selectedImgIndex, setSelectedImgIndex] = useState(0);
   const productDetailRef = useRef(null);
   const [isHidden, setIsHidden] = useState(false);
@@ -42,10 +44,27 @@ export default function ProductDetail() {
 
   const product = blankets.find((item) => item.pathName === pathName);
 
+  const handleAddToCart = () => {
+    // Dispatch an action to add the product to the cart
+    // Assuming you have an action creator called addToCart
+    if (carts.some((item) => item.product.id === product.id)) {
+      toast.error("Sản phẩm đã có trong giỏ", { autoClose: 2000 });
+    } else {
+      const productToAdd = {
+        product,
+        quantity: 1, // Default quantity can be set here
+        totalPrice: product.price * 1,
+      };
+      dispatch({ type: "ADD_TO_CART", payload: productToAdd });
+      toast.success("Thêm sản phẩm thành công", { autoClose: 2000 });
+    }
+  };
+
   return (
     <div>
       {product && (
         <div ref={productDetailRef} className={cx("wrapper-product")}>
+          <ToastContainer />
           <div className={cx("position-relative")}>
             <section className={cx("product-detail")}>
               <div className={cx("slides")}>
@@ -121,7 +140,10 @@ export default function ProductDetail() {
                   </div>
                 </div>
                 <div className={cx("product-action", isHidden ? "hidden" : "")}>
-                  <button className={cx("btn", "btn-add-cart")}>
+                  <button
+                    className={cx("btn", "btn-add-cart")}
+                    onClick={handleAddToCart}
+                  >
                     Thêm vào giỏ
                   </button>
                   <button className={cx("btn", "btn-buy-now")}>Mua ngay</button>

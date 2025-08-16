@@ -11,6 +11,7 @@ import {
   WishlistIcon,
 } from "../Icon/Icon";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +22,7 @@ const Header = ({ activeSearch }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
   const [resetMenuTrigger, setResetMenuTrigger] = useState(true);
   const navigate = useNavigate();
+  const carts = useSelector((state) => state.cart);
 
   useEffect(() => {
     if (burgerIsActive) {
@@ -82,7 +84,7 @@ const Header = ({ activeSearch }) => {
               className={cx("cart")}
             >
               <CartIcon className={cx("cart-icon")} />
-              <span className={cx("cart-count")}>0</span>
+              <span className={cx("cart-count")}>{carts?.length}</span>
             </div>
             <div
               className={cx("burger-icon", { active: burgerIsActive })}
