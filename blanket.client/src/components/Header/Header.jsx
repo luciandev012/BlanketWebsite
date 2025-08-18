@@ -79,10 +79,7 @@ const Header = ({ activeSearch }) => {
             <div className={cx("account")}>
               <AccountIcon className={cx("account-icon")} />
             </div>
-            <div
-              onClick={() => navigate("/cart", { replace: true })}
-              className={cx("cart")}
-            >
+            <div onClick={() => navigate("/cart")} className={cx("cart")}>
               <CartIcon className={cx("cart-icon")} />
               <span className={cx("cart-count")}>{carts?.length}</span>
             </div>

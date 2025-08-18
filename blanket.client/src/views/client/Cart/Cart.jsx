@@ -108,7 +108,10 @@ export default function Cart() {
                           </div>
                         </div>
                         <div className={cx("item-price")}>
-                          {item.product.price}
+                          {Number(item.product.price).toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
                         </div>
                         <div className={cx("item-quantity")}>
                           <div className={cx("quantity-container")}>
@@ -135,7 +138,10 @@ export default function Cart() {
                           </div>
                         </div>
                         <div className={cx("item-price")}>
-                          {item.totalPrice}
+                          {Number(item.totalPrice).toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
                         </div>
                         <a
                           href="#"
@@ -156,7 +162,10 @@ export default function Cart() {
                       <span>Tổng tiền</span>
                     </div>
                     <div className={cx("fw-bold")}>
-                      {totalPrice}
+                      {totalPrice.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
                       {/* <span>d</span> */}
                     </div>
                   </div>

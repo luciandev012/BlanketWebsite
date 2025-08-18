@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.scss";
 import classNames from "classnames/bind";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { getBlankets } from "../../../actions/blanket";
 import { getImageUrl } from "../../../helper/common";
@@ -17,6 +17,7 @@ export default function ProductDetail() {
   const [selectedImgIndex, setSelectedImgIndex] = useState(0);
   const productDetailRef = useRef(null);
   const [isHidden, setIsHidden] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getBlankets());
@@ -44,7 +45,7 @@ export default function ProductDetail() {
 
   const product = blankets.find((item) => item.pathName === pathName);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (isGotoCart) => {
     // Dispatch an action to add the product to the cart
     // Assuming you have an action creator called addToCart
     if (carts.some((item) => item.product.id === product.id)) {
@@ -57,6 +58,12 @@ export default function ProductDetail() {
       };
       dispatch({ type: "ADD_TO_CART", payload: productToAdd });
       toast.success("Thêm sản phẩm thành công", { autoClose: 2000 });
+      if (isGotoCart) {
+        setTimeout(() => {
+          // Navigate to the cart page if isGotoCart is true
+          navigate("/cart");
+        }, 2000); // 2000ms = 2 seconds
+      }
     }
   };
 
@@ -117,8 +124,10 @@ export default function ProductDetail() {
                 </div>
                 <div className={cx("price-box")}>
                   <div className={cx("price")}>
-                    {product.price}
-                    <span className={cx("dong")}>đ</span>
+                    {Number(product.price).toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
                   </div>
                 </div>
                 <div className={cx("product-attribute")}>
@@ -142,11 +151,16 @@ export default function ProductDetail() {
                 <div className={cx("product-action", isHidden ? "hidden" : "")}>
                   <button
                     className={cx("btn", "btn-add-cart")}
-                    onClick={handleAddToCart}
+                    onClick={() => handleAddToCart(false)}
                   >
                     Thêm vào giỏ
                   </button>
-                  <button className={cx("btn", "btn-buy-now")}>Mua ngay</button>
+                  <button
+                    className={cx("btn", "btn-buy-now")}
+                    onClick={() => handleAddToCart(true)}
+                  >
+                    Mua ngay
+                  </button>
                 </div>
               </div>
             </section>

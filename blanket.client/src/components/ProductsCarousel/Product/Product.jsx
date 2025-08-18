@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 const Product = ({ product }) => {
-  console.log(product);
-
   return (
     <div className={cx("wrapper")}>
       <div className={cx("product-image")}>
@@ -34,7 +32,7 @@ const Product = ({ product }) => {
         </Link>
         {/* <span className={cx("product-sku")}>CPM25205</span> */}
         <span className={cx("product-price")}>
-          {product.price.toLocaleString("vi-VN", {
+          {Number(product.price).toLocaleString("vi-VN", {
             style: "currency",
             currency: "VND",
           })}
